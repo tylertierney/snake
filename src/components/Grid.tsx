@@ -171,7 +171,7 @@ export default function Grid({ gridDimensions, game, setGame }: GridProps) {
         }}
       >
         {grid.map((row, r) => {
-          return row.map((col, c) => {
+          return row.map((_, c) => {
             const hasSnake = snake.some(
               ([snakeR, snakeC]) => snakeR === r && snakeC === c
             );
