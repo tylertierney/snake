@@ -27,55 +27,57 @@ export default function App() {
 
   return (
     <div className="App">
-      <label htmlFor="heightInput">
-        Height
-        <input
-          disabled={game.active}
-          type="number"
-          name="heightInput"
-          id="heightInput"
-          value={gridDimensions.height}
-          min={2}
-          max={25}
-          pattern="[0-9]+"
-          onChange={(e) => {
-            const value = parseInt(e.target.value, 10);
-            setGridDimensions((prev) => ({
-              ...prev,
-              height: value ? value : 10,
-            }));
-          }}
-        />
-      </label>
-      <label>
-        Width
-        <input
-          disabled={game.active}
-          type="number"
-          name="widthInput"
-          id="widthInput"
-          value={gridDimensions.width}
-          min={2}
-          max={25}
-          pattern="[0-9]+"
-          onChange={(e) => {
-            const value = parseInt(e.target.value, 10);
-            setGridDimensions((prev) => ({
-              ...prev,
-              width: value ? value : 10,
-            }));
-          }}
-        />
-      </label>
+      <div className="menu">
+        <label htmlFor="heightInput">
+          <span>Height</span>
+          <input
+            disabled={game.active}
+            type="number"
+            name="heightInput"
+            id="heightInput"
+            value={gridDimensions.height}
+            min={2}
+            max={25}
+            pattern="[0-9]+"
+            onChange={(e) => {
+              const value = parseInt(e.target.value, 10);
+              setGridDimensions((prev) => ({
+                ...prev,
+                height: value ? value : 10,
+              }));
+            }}
+          />
+        </label>
+        <label>
+          <span>Width</span>
+          <input
+            disabled={game.active}
+            type="number"
+            name="widthInput"
+            id="widthInput"
+            value={gridDimensions.width}
+            min={2}
+            max={25}
+            pattern="[0-9]+"
+            onChange={(e) => {
+              const value = parseInt(e.target.value, 10);
+              setGridDimensions((prev) => ({
+                ...prev,
+                width: value ? value : 10,
+              }));
+            }}
+          />
+        </label>
+      </div>
       <Grid game={game} setGame={setGame} gridDimensions={gridDimensions} />
-      {!game.active && (
+      {/* {!game.active && (
         <div>
           <h3>Game Over</h3>
           <button onClick={() => setGame(() => ({ score: 0, active: true }))}>
             Restart
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

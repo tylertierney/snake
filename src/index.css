@@ -1,7 +1,45 @@
+* {
+  --bg-color: #111821;
+  --border-color: rgba(211, 211, 211, 0.36);
+  --button-primary: #6e59ff;
+  --button-secondary: #e5e9ff;
+  --apple-color: #ff5252;
+  --snake-head: rgb(92, 211, 250);
+  --snake-tail: lightblue;
+}
+
+body {
+  display: flex;
+  background: var(--bg-color);
+  color: white;
+}
+
+#root {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .App {
   font-family: sans-serif;
   display: flex;
   flex-direction: column;
+  padding: 1rem;
+  gap: 2rem;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    display: flex;
+    justify-content: space-between;
+    span {
+      min-width: 60px;
+    }
+  }
 }
 
 label {
@@ -10,29 +48,63 @@ label {
   align-items: center;
 }
 
-.score {
+.grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  align-items: center;
+
+  .score {
+    display: flex;
+    gap: 0.25rem;
+    align-self: flex-end;
+
+    .score-value {
+      min-width: 40px;
+      text-align: right;
+    }
+  }
+
+  .grid {
+    height: 300px;
+    width: 300px;
+    display: grid;
+  }
+
+  .game-over {
+    display: flex;
+    flex-direction: column;
+    
+    .reset-btn {
+      background: var(--button-primary);
+      color: white;
+      border: none;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      position: relative;
+      cursor: pointer;
+
+      &::before {
+        content: '';
+        height: 100%;
+        width: 100%;
+        background: var(--button-secondary);
+        position: absolute;
+        left: 3px;
+        top: 3px;
+        z-index: -1;
+      }
+    }
+  }
 }
 
-.grid {
-  height: 300px;
-  width: 300px;
-  display: grid;
-}
 
 .square {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: solid rgba(211, 211, 211, 0.279) 1px;
-}
-
-.square.tail {
-  /* background-color: lightblue; */
-}
-
-.square.head {
-  /* background-color: rgb(132, 214, 241); */
+  border: solid var(--border-color) 1px;
 }
 
 .square.tail::after,
@@ -41,12 +113,15 @@ label {
   content: "";
   height: 100%;
   width: 100%;
-  background-color: lightblue;
   border-radius: 8px;
 }
 
+.square.tail::after {
+  background-color: var(--snake-tail);
+}
+
 .square.head::after {
-  background-color: rgb(92, 211, 250);
+  background-color: var(--snake-head);
 }
 
 .square.apple::after {
@@ -54,8 +129,6 @@ label {
   content: "";
   height: 50%;
   width: 50%;
-  background-color: red;
+  background-color: var(--apple-color);
   border-radius: 100%;
 }
-
-.square.;

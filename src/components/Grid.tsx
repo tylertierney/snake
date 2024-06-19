@@ -57,8 +57,6 @@ const moveSnake = (
     const head = snake[0];
     const newR = head[0] + vector[0];
     const newC = head[1] + vector[1];
-    // if (newR < 0 || newR >= gridHeight) return snake;
-    // if (newC < 0 || newC >= gridWidth) return snake;
 
     const newSnake = [...snake];
 
@@ -160,8 +158,11 @@ export default function Grid({ gridDimensions, game, setGame }: GridProps) {
   const grid = initializeGrid(gridDimensions.height, gridDimensions.width);
 
   return (
-    <div className="App">
-      <div>Score: {(snake.length - 1) * 100}</div>
+    <div className="grid-wrapper">
+      <div className="score">
+        <span className="score-literal">Score:</span>
+        <span className="score-value">{(snake.length - 1) * 100}</span>
+      </div>
       <div
         className="grid"
         style={{
@@ -188,6 +189,17 @@ export default function Grid({ gridDimensions, game, setGame }: GridProps) {
           });
         })}
       </div>
+      {!game.active && (
+        <div className="game-over">
+          <h3 className="game-over-literal">Game Over</h3>
+          <button
+            className="reset-btn"
+            onClick={() => setGame(() => ({ score: 0, active: true }))}
+          >
+            Restart
+          </button>
+        </div>
+      )}
     </div>
   );
 }

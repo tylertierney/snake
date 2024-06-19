@@ -1,6 +1,6 @@
 export const keyHandler =
   (setVector: React.Dispatch<React.SetStateAction<[number, number]>>) =>
-  (e: KeyboardEvent) => {
+  (e: KeyboardEvent): void => {
     switch (e.key) {
       case "ArrowUp":
         e.preventDefault();
