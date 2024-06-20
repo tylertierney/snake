@@ -40,7 +40,8 @@ export default function App() {
             max={25}
             pattern="[0-9]+"
             onChange={(e) => {
-              const value = parseInt(e.target.value, 10);
+              const parsed = parseInt(e.target.value, 10);
+              const value = Math.max(parsed, 2);
               setGridDimensions((prev) => ({
                 ...prev,
                 height: value ? value : 10,
@@ -60,7 +61,8 @@ export default function App() {
             max={25}
             pattern="[0-9]+"
             onChange={(e) => {
-              const value = parseInt(e.target.value, 10);
+              const parsed = parseInt(e.target.value, 10);
+              const value = Math.max(parsed, 2);
               setGridDimensions((prev) => ({
                 ...prev,
                 width: value ? value : 10,
@@ -70,14 +72,6 @@ export default function App() {
         </label>
       </div>
       <Grid game={game} setGame={setGame} gridDimensions={gridDimensions} />
-      {/* {!game.active && (
-        <div>
-          <h3>Game Over</h3>
-          <button onClick={() => setGame(() => ({ score: 0, active: true }))}>
-            Restart
-          </button>
-        </div>
-      )} */}
     </div>
   );
 }
